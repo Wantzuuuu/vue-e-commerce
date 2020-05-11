@@ -30,68 +30,38 @@
             </div>
         </section>
         <!-- lookbook section end-->
+         <!--men advance-->
+        <advance :title="men.title"  :description="men.description" :img="men.img" :type="'men'" :btnTitle="'Shop Men'" :category="'ALL'" :direction="'right'"></advance>
+        <!--men advance end-->
 
-        <!-- men section -->
-        <section class="mt-4 advance">
-            <div class="index-background-img bg-cover" :style="{backgroundImage:'url('+men.img+')'}">
+         <!-- women advance -->
+         <advance :title="women.title"  :description="women.description" :img="women.img" :type="'women'" :btnTitle="'Shop Women'" :category="'ALL'" :direction="'left'"></advance>
+        <!-- women advance end-->
 
-            </div>
-            <div class="content-box a-1">
-                <h1>{{men.title}}</h1>
-                <h5 class="mt-3">{{men.description}}</h5>
-                <div>
-                    <button @click="goPage('/products/men')" class="advance-btn mt-3">Shop Men</button>
-                </div>
-            </div>
-        </section>
-
-         <!-- women section -->
-        <section class="mt-sm-4 advance">
-            <div class="index-background-img bg-top" :style="{backgroundImage:'url('+women.img+')'}">
-
-            </div>
-            <div class="content-box a-2">
-                <h1>{{women.title}}</h1>
-                <h5 class="mt-3">{{women.description}}</h5>
-                <div>
-                    <button @click="goPage('/products/women')" class="advance-btn mt-3">Shop Women</button>
-                </div>
-            </div>
-        </section>
-        <!-- women section end-->
-
-        <!-- skateboard section -->
-        <section class="my-sm-4 advance">
-            <div class="index-background-img bg-top" :style="{backgroundImage:'url('+skateboard.img+')'}">
-
-            </div>
-            <div class="content-box a-2">
-                <h1>{{skateboard.title}}</h1>
-                <h5 class="mt-3">{{skateboard.description}}</h5>
-                <div>
-                    <button @click="goPage('/products/all_items','SKATEBOARD')" class="advance-btn mt-3">SKATEBOARD</button>
-                </div>
-            </div>
-        </section>
-        <!-- skateboard section end-->
+        <!-- skateboard advance -->
+        <advance :title="skateboard.title"  :description="skateboard.description" :img="skateboard.img" :type="'all_items'" :btnTitle="'SKATEBOARD'" :category="'SKATEBOARD'" :direction="'left'"></advance>
+        <!-- skateboard advance end-->
     </div>
 </template>
 
 <script>
+import advance from '../components/advance.vue';
 import {mapGetters,mapActions} from "vuex";
 import $ from 'jquery';
 export default {
     name:'index',
+    components:{
+        advance,
+    },
     data(){
         return{
             position: 0,
         }
     },
     methods:{
-        goPage(path,target= "ALL"){
+        goPage(path){
             const vm = this ;
-            // console.log(path ,target);
-            vm.$store.dispatch("productsModules/changeCategory",target);
+            // console.log(path);
             vm.$router.push(path);
         },
         scrollHeader(){
